@@ -4,6 +4,7 @@ using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
+using TMPro;
 
 public class FollowCam : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class FollowCam : MonoBehaviour
     [Header("set in Inspector")]
     public float easing = 0.05f;
     public Vector2 minXY = Vector2.zero;
+    public TextMeshProUGUI uitButton;
 
     [Header("Set Dynamically")]
     public float camZ;
@@ -27,6 +29,7 @@ public class FollowCam : MonoBehaviour
         if (POI == null)
         {
             destination = Vector3.zero;
+            uitButton.text = "Show Castle";
         } else
         {
             destination = POI.transform.position;

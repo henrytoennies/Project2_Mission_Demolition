@@ -110,3 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23699f26ed6d7154ab4ea03ea6b6f94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalSoundClip: {fileID: 8300000, guid: 8d7c03cfff6fd2d43a78a3896ea7c84c, type: 3}

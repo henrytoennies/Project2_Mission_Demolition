@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-public class ProjecilteLine : MonoBehaviour
+public class ProjectileLine : MonoBehaviour
 {
-    static public ProjecilteLine S;
+    static public ProjectileLine S;
     
     [Header("Set in Inspector")]
     public float minDist = 0.1f;

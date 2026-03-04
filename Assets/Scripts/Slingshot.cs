@@ -9,6 +9,7 @@ public class Slingshot : MonoBehaviour
     [Header("Set in Inspector")]
     public GameObject prefabProjectile;
     public float velocityMult = 8f;
+    public AudioClip bandSoundClip;
 
     [Header("Set Dynamically")]
     public GameObject launchPoint;
@@ -17,6 +18,9 @@ public class Slingshot : MonoBehaviour
     public bool aimingMode;
 
     private Rigidbody projectileRigidbody;
+    private AudioSource audioSource;
+    private GameObject mainCam;
+
 
     static public Vector3 LAUNCH_POS
     {
@@ -37,6 +41,9 @@ public class Slingshot : MonoBehaviour
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
         launchPos = launchPointTrans.position;
+
+        mainCam = GameObject.Find("_Main Camera");
+        audioSource = mainCam.GetComponent<AudioSource>();
     }
 
     void OnMouseEnter()
@@ -96,6 +103,11 @@ public class Slingshot : MonoBehaviour
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
             FollowCam.POI = projectile;
             projectile = null;
+            MissionDemolition.ShotFired();
+            ProjectileLine.S.poi = projectile;
+
+            audioSource.clip = bandSoundClip;
+            audioSource.Play();
         }
 
 
