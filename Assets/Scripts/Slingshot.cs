@@ -10,6 +10,9 @@ public class Slingshot : MonoBehaviour
     public GameObject prefabProjectile;
     public float velocityMult = 8f;
     public AudioClip bandSoundClip;
+    public LineRenderer line;
+    public Transform firstPoint;
+    public Transform secondPoint;
 
     [Header("Set Dynamically")]
     public GameObject launchPoint;
@@ -41,6 +44,11 @@ public class Slingshot : MonoBehaviour
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
         launchPos = launchPointTrans.position;
+
+
+        line.SetPosition(0, firstPoint.position);
+        line.SetPosition(1, launchPos);
+        line.SetPosition(2, secondPoint.position);
 
         mainCam = GameObject.Find("_Main Camera");
         audioSource = mainCam.GetComponent<AudioSource>();
@@ -94,6 +102,8 @@ public class Slingshot : MonoBehaviour
         //Move the projectile to this new position
         Vector3 projPos = launchPos + mouseDelta;
         projectile.transform.position = projPos;
+
+        line.SetPosition(1, projPos);
 
         //the mouse has been released
         if (Input.GetMouseButtonUp(0))

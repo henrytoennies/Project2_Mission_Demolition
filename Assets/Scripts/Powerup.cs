@@ -7,10 +7,13 @@ public class Powerup : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public static GameObject powerup;
+    public AudioClip powerSoundClip;
     
     
     private Rigidbody projectileRigidbody;
     private Transform projectileTrans;
+    private AudioSource audioSource;
+    private GameObject mainCam;
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,12 +25,17 @@ public class Powerup : MonoBehaviour
             projectileTrans = other.GetComponent<Transform>();
             projectileTrans.localScale = new Vector3(1.5f,1.5f,1.5f);
 
+            audioSource.clip = powerSoundClip;
+            audioSource.Play();
+
             powerup.SetActive(false);
         }
     }
 
-    void Start()
+    void Awake()
     {
         powerup = GameObject.Find("Powerup");
+        mainCam = GameObject.Find("_Main Camera");
+        audioSource = mainCam.GetComponent<AudioSource>();
     }
 }
